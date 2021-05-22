@@ -1,10 +1,16 @@
-import React from 'react';
-import { SafeAreaView, Text, Image, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, Text, Image, StyleSheet, Platform } from 'react-native';
 
 import wateringImg from '../assets/watering.png';
 import colors from '../styles/colors';
+import { Button } from '../components/Button';
 
 export function Welcome() {
+    const [visible, setVisible] = useState(true);
+
+    function handleVisibility() {
+        (visible) ? setVisible(false) : setVisible(true)
+    }
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.title} >
@@ -12,22 +18,19 @@ export function Welcome() {
                 suas plantas de {'\n'}
                 forma fácil.
             </Text>
-
-            <Image style={styles.image} source={wateringImg} />
+            {
+                visible &&
+                <Image style={styles.image} source={wateringImg} />
+            }
 
             <Text style={styles.subtitle} >
                 Não esqueça mais de regar suas plantas.
                 Nós cuidaremos de lembrar você
                 sempre que precisar.
             </Text>
-            <TouchableOpacity
-                style={styles.button}
-                activeOpacity={0.7}
-            >
-                <Text style={styles.buttonText} >
-                    ➡
-                </Text>
-            </TouchableOpacity>
+
+            <Button title="➡" onPress={handleVisibility} />
+
         </SafeAreaView>
     )
 }
@@ -52,22 +55,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         color: colors.heading,
     },
-    button: {
-        backgroundColor: colors.green,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 16,
-        marginBottom: 10,
-        height: 56,
-        width: 56,
-    },
     image: {
         width: 292,
         height: 284,
     },
-    buttonText: {
-        color: colors.white,
-        fontSize: 24,
-    }
-
 });
