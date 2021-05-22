@@ -84,9 +84,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: 54,
+        width: '100%'
     },
     header: {
         alignItems: 'center',
+        width: '100%'
     },
     emoji: {
         fontSize: 44
